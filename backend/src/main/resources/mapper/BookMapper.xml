@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.library.mapper.BookMapper">
+
+    <resultMap id="BaseResultMap" type="com.library.entity.Book">
+        <id column="book_id" property="bookId"/>
+        <result column="book_no" property="bookNo"/>
+        <result column="isbn" property="isbn"/>
+        <result column="book_name" property="bookName"/>
+        <result column="author" property="author"/>
+        <result column="category_id" property="categoryId"/>
+        <result column="publisher" property="publisher"/>
+        <result column="publish_time" property="publishTime"/>
+        <result column="stock" property="stock"/>
+        <result column="borrow_count" property="borrowCount"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="is_deleted" property="isDeleted"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        book_id, book_no, isbn, book_name, author, category_id, publisher, publish_time, stock, borrow_count, create_time, update_time, is_deleted
+    </sql>
+
+    <select id="selectBookPage" resultMap="BaseResultMap">
+        SELECT b.*, bc.category_name
+        FROM book b
+        LEFT JOIN book_category bc ON b.category_id = bc.category_id
+        WHERE b.is_deleted = 0
+        <if test="query != null">
+            <if test="query.bookNo != null and query.bookNo != ''">
+                AND b.book_no LIKE CONCAT('%', #{query.bookNo}, '%')
+            </if>
+            <if test="query.bookName != null and query.bookName != ''">
+                AND b.book_name LIKE CONCAT('%', #{query.bookName}, '%')
+            </if>
+            <if test="query.author != null and query.author != ''">
+                AND b.author LIKE CONCAT('%', #{query.author}, '%')
+            </if>
+            <if test="query.categoryId != null">
+                AND b.category_id = #{query.categoryId}
+            </if>
+            <if test="query.publisher != null and query.publisher != ''">
+                AND b.publisher LIKE CONCAT('%', #{query.publisher}, '%')
+            </if>
+        </if>
+        ORDER BY b.create_time DESC
+    </select>
+
+</mapper>

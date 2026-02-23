@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.library.mapper.BorrowRecordMapper">
+
+    <resultMap id="BaseResultMap" type="com.library.entity.BorrowRecord">
+        <id column="record_id" property="recordId"/>
+        <result column="book_id" property="bookId"/>
+        <result column="reader_id" property="readerId"/>
+        <result column="borrow_time" property="borrowTime"/>
+        <result column="due_time" property="dueTime"/>
+        <result column="return_time" property="returnTime"/>
+        <result column="overdue_days" property="overdueDays"/>
+        <result column="overdue_fee" property="overdueFee"/>
+        <result column="operator_id" property="operatorId"/>
+        <result column="status" property="status"/>
+        <result column="book_no" property="bookNo"/>
+        <result column="book_name" property="bookName"/>
+        <result column="reader_no" property="readerNo"/>
+        <result column="reader_name" property="readerName"/>
+        <result column="admin_name" property="adminName"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        record_id, book_id, reader_id, borrow_time, due_time, return_time, overdue_days, overdue_fee, operator_id, status
+    </sql>
+
+    <select id="selectBorrowRecordPage" resultMap="BaseResultMap">
+        SELECT br.record_id, br.book_id, br.reader_id, br.borrow_time, br.due_time, br.return_time, 
+               br.overdue_days, br.overdue_fee, br.operator_id, br.status,
+               b.book_no, b.book_name, b.category_id,
+               r.reader_no, r.reader_name, r.reader_type,
+               a.admin_name
+        FROM borrow_record br
+        LEFT JOIN book b ON br.book_id = b.book_id
+        LEFT JOIN reader r ON br.reader_id = r.reader_id
+        LEFT JOIN admin a ON br.operator_id = a.admin_id
+        WHERE 1=1
+        <if test="query != null">
+            <if test="query.bookNo != null and query.bookNo != ''">
+                AND b.book_no LIKE CONCAT('%', #{query.bookNo}, '%')
+            </if>
+            <if test="query.bookName != null and query.bookName != ''">
+                AND b.book_name LIKE CONCAT('%', #{query.bookName}, '%')
+            </if>
+            <if test="query.readerNo != null and query.readerNo != ''">
+                AND (r.reader_no LIKE CONCAT('%', #{query.readerNo}, '%') OR r.reader_name LIKE CONCAT('%', #{query.readerNo}, '%'))
+            </if>
+            <if test="query.readerName != null and query.readerName != ''">
+                AND r.reader_name LIKE CONCAT('%', #{query.readerName}, '%')
+            </if>
+            <if test="query.status != null">
+                AND br.status = #{query.status}
+            </if>
+            <if test="query.startTime != null">
+                AND br.borrow_time &gt;= #{query.startTime}
+            </if>
+            <if test="query.endTime != null">
+                AND br.borrow_time &lt;= #{query.endTime}
+            </if>
+        </if>
+        ORDER BY br.borrow_time DESC
+    </select>
+    
+    <select id="selectByReaderId" resultMap="BaseResultMap">
+        SELECT br.record_id, br.book_id, br.reader_id, br.borrow_time, br.due_time, br.return_time, 
+               br.overdue_days, br.overdue_fee, br.operator_id, br.status,
+               b.book_no, b.book_name,
+               r.reader_no, r.reader_name
+        FROM borrow_record br
+        LEFT JOIN book b ON br.book_id = b.book_id
+        LEFT JOIN reader r ON br.reader_id = r.reader_id
+        WHERE br.reader_id = #{readerId}
+        ORDER BY br.borrow_time DESC
+    </select>
+
+</mapper>
