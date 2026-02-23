@@ -1,0 +1,45 @@
+// 全局样式变量定义
+
+// 主色调 - 图书馆蓝
+$primary-color: #6B90C6; // 主色调：浅蓝色
+$primary-light: rgba(107, 144, 198, 0.1); // 主色浅背景
+$primary-lighter: rgba(107, 144, 198, 0.05); // 主色超浅背景
+
+// 功能色
+$success-color: #8BC34A; // 浅绿色 - 成功
+$warning-color: #FFC107; // 浅黄色 - 警告
+$danger-color: #FF7043; // 浅橙色 - 危险
+$info-color: #90A4AE; // 浅灰色 - 信息
+
+// 背景色
+$background-primary: #F8FAFC; // 米白色 - 页面背景
+$background-secondary: #FFFFFF; // 纯白色 - 卡片背景
+$background-hover: #F1F5F9; // 浅灰色 - 悬停背景
+
+// 文字颜色
+$text-primary: #2D3748; // 深灰色 - 主要文字
+$text-secondary: #718096; // 浅灰色 - 次要文字
+$text-muted: #A0AEC0; // 极浅灰色 - 辅助文字
+$text-placeholder: #CBD5E0; // 占位符文字
+
+// 边框颜色
+$border-color: #E2E8F0; // 浅灰色边框
+$border-color-light: #EDF2F7; // 极浅灰色边框
+$border-color-lighter: #F7FAFC; // 接近白色的边框
+
+// 阴影效果
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+$shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.12);
+$shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+
+// 圆角
+$border-radius-sm: 6px;
+$border-radius-md: 10px;
+$border-radius-lg: 12px;
+$border-radius-xl: 16px;
+
+// 动画效果
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;

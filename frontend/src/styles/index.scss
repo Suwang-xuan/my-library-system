@@ -1,0 +1,363 @@
+// 导入全局变量
+@import './variables.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-size: 14px;
+  color: $text-primary;
+  background-color: $background-primary; // 柔和米白色背景
+}
+
+#app {
+  height: 100%;
+}
+
+.el-container {
+  height: 100%;
+}
+
+// 侧边栏样式
+.el-aside {
+  background-color: #3A4B5C; // 深色背景，便于阅读
+  color: #E0E6ED;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+// 顶部导航栏样式
+.el-header {
+  background-color: $background-secondary; // 白色背景
+  box-shadow: $shadow-sm; // 柔和阴影
+  padding: 0 24px; // 增加内边距
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// 主内容区域样式
+.el-main {
+  background-color: $background-primary; // 柔和米白色背景
+  padding: 24px; // 增加内边距
+  overflow-y: auto;
+}
+
+// 页脚样式
+.el-footer {
+  background-color: $background-secondary; // 白色背景
+  text-align: center;
+  line-height: 60px;
+  font-size: 12px;
+  color: $text-secondary;
+  border-top: 1px solid $border-color-light; // 顶部边框
+}
+
+.logo-container {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2D3B4A; // 深蓝色背景
+  border-bottom: 1px solid #405060;
+
+  .logo {
+    font-size: 18px;
+    font-weight: 600;
+    color: #FFFFFF;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+}
+
+.page-header {
+  margin-bottom: 24px;
+
+  .page-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 8px;
+  }
+
+  .page-breadcrumb {
+    margin-top: 8px;
+    font-size: 14px;
+    color: $text-secondary;
+  }
+}
+
+.filter-container {
+  background-color: $background-secondary;
+  padding: 24px;
+  border-radius: $border-radius-md;
+  margin-bottom: 24px;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-color-light;
+}
+
+.table-container {
+  background-color: $background-secondary;
+  border-radius: $border-radius-md;
+  padding: 24px;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-color-light;
+}
+
+.pagination-container {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid $border-color-light;
+}
+
+.stat-card {
+  background-color: $background-secondary;
+  border-radius: $border-radius-md;
+  padding: 24px;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-color-light;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: $shadow-md;
+    transform: translateY(-2px);
+  }
+
+  .stat-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+
+    &.blue {
+      background-color: rgba(107, 144, 198, 0.1);
+      color: $primary-color;
+    }
+
+    &.green {
+      background-color: rgba(139, 195, 74, 0.1);
+      color: $success-color;
+    }
+
+    &.orange {
+      background-color: rgba(255, 193, 7, 0.1);
+      color: $warning-color;
+    }
+
+    &.red {
+      background-color: rgba(255, 112, 67, 0.1);
+      color: $danger-color;
+    }
+  }
+
+  .stat-content {
+    margin-left: 20px;
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 600;
+      color: $text-primary;
+      line-height: 1.2;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: $text-secondary;
+      margin-top: 6px;
+    }
+  }
+}
+
+.chart-container {
+  background-color: $background-secondary;
+  border-radius: $border-radius-md;
+  padding: 24px;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-color-light;
+  height: 420px;
+
+  .chart-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $border-color-light;
+  }
+
+  .chart {
+    height: 330px;
+  }
+}
+
+.form-container {
+  background-color: $background-secondary;
+  border-radius: $border-radius-md;
+  padding: 24px;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border-color-light;
+
+  .form-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid $border-color-light;
+  }
+}
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #E3F2FD 0%, #F3E5F5 100%); // 柔和渐变背景
+
+  .login-box {
+    width: 440px;
+    background-color: $background-secondary;
+    border-radius: $border-radius-lg;
+    padding: 48px;
+    box-shadow: $shadow-lg;
+    border: 1px solid $border-color-light;
+
+    .login-title {
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+      color: $text-primary;
+      margin-bottom: 36px;
+      letter-spacing: 0.5px;
+    }
+  }
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  border-radius: $border-radius-md;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $background-hover;
+  }
+
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: $primary-color;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: $shadow-sm;
+  }
+
+  .user-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-primary;
+  }
+}
+
+.breadcrumb-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+
+  .breadcrumb-item {
+    color: $text-secondary;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    &.active {
+      color: $primary-color;
+      font-weight: 500;
+    }
+  }
+}
+
+// 菜单样式优化
+.el-menu {
+  border-right: none !important;
+  background-color: #3A4B5C !important;
+}
+
+.el-menu-item,
+.el-sub-menu__title {
+  height: 56px;
+  line-height: 56px;
+  font-size: 14px;
+  color: #E0E6ED !important;
+  transition: all 0.3s ease !important;
+
+  &:hover {
+    background-color: #2D3B4A !important;
+    color: #FFFFFF !important;
+  }
+}
+
+.el-menu-item.is-active {
+  background-color: $primary-color !important;
+  color: #FFFFFF !important;
+}
+
+.el-sub-menu.is-active > .el-sub-menu__title {
+  color: #FFFFFF !important;
+}
+
+// 子菜单样式
+.el-sub-menu .el-menu {
+  background-color: #2D3B4A !important;
+
+  .el-menu-item {
+    height: 48px;
+    line-height: 48px;
+    padding-left: 48px !important;
+
+    &:hover {
+      background-color: rgba(107, 144, 198, 0.2) !important;
+    }
+  }
+}
+
+// 菜单图标样式
+.el-menu .el-icon {
+  margin-right: 12px;
+  font-size: 18px;
+}
+
+.text-primary { color: $primary-color; }
+.text-success { color: $success-color; }
+.text-warning { color: $warning-color; }
+.text-danger { color: $danger-color; }
+.text-info { color: $info-color; }
+
+.bg-primary { background-color: $primary-color; }
+.bg-success { background-color: $success-color; }
+.bg-warning { background-color: $warning-color; }
+.bg-danger { background-color: $danger-color; }
+.bg-info { background-color: $info-color; }
+
+// 引入自定义样式
+@import './custom.scss';
