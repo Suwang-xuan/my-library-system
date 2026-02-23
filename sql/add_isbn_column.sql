@@ -1,0 +1,3 @@
+-- 给book表添加isbn列
+ALTER TABLE book ADD COLUMN isbn VARCHAR(20) NOT NULL DEFAULT '' COMMENT '图书ISBN';
+SHOW COLUMNS FROM book LIKE 'isbn';
